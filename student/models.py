@@ -1,12 +1,12 @@
 from django.db import models
-from parent.models import parentreg
+from parent.models import parent
 
 # Create your models here.
 class studentreg(models.Model):
     fnm = models.CharField(max_length=40)
     mnm = models.CharField(max_length=40)
     lnm = models.CharField(max_length=40)
-    parent_id=models.ForeignKey(parentreg, on_delete=models.CASCADE)
+    parent_id=models.ForeignKey(parent, on_delete=models.CASCADE)
     address = models.CharField(max_length=400)
     state = models.CharField(max_length=40)
     city = models.CharField(max_length=40)
