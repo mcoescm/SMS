@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'course',
     'subject',
+    'parent',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'project',
         'USER':'root',
-        'PASSWORD':'root',
+        'PASSWORD':'flashbang', #change password for your mysql
         'HOST':'localhost',
         'PORT':''
 
