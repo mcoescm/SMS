@@ -4,6 +4,5 @@ from django.http import HttpResponse
 def index(request):
     #return HttpResponse("Hello rohan from subject")
     return render(request,'subject/register.html')
-    return render(request, 'subject/register.html')
-    return render(request,'subject/register.html')
+
 
