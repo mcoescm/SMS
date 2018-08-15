@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'course',
+    'student',
     'subject',
     'parent',
     'testapp',
