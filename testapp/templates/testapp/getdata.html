@@ -1,0 +1,10 @@
+<html>
+
+
+<form action="{% url 'testapp:geta' %}" method="post">
+    {% csrf_token %}
+<input type="text" name="courseid" placeholder="courseid">
+<input type="submit" value="go">
+
+    </form>
+</html>
