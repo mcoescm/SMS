@@ -17,12 +17,15 @@
 
 <body style="background-color:rgb(241,247,252);">
     <div class="login-clean" style="height:649px;">
-        <form method="post" data-aos="fade" data-aos-duration="600" data-aos-delay="150" id="mform" style="margin-top:59px;width:364px;max-width:348px;">
+        <form action="{% url 'subject:register' %}" method="post" data-aos="fade" data-aos-duration="600" data-aos-delay="150" id="mform" style="margin-top:59px;width:364px;max-width:348px;">
+            {% csrf_token %}
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-book-outline" style="color:rgb(1,159,208);"></i></div>
-            <div class="form-group"><input class="form-control" type="text" required="" placeholder="Subject ID" pattern="[0-9]+"></div>
-            <div class="form-group"><input class="form-control" type="text" required="" placeholder="Subject Name"></div>
-            <div class="form-group"><select class="form-control" required=""><optgroup label="This is a group"></optgroup></select></div>
+            <div class="form-group"><input class="form-control" type="text" name="subid" required="" placeholder="Subject ID" pattern="[0-9]+"></div>
+            <div class="form-group"><input class="form-control" type="text" name="subnm" required="" placeholder="Subject Name"></div>
+
+            <div class="form-group"><select class="form-control" name="coursename" required=""><optgroup label="This is a group"></optgroup>{% for i in dept %}<option value="{{  i.coursename}} " name="{{ i.coursename }}"  >{{ i.coursename }} </option>{% endfor %}</select></div>
+
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="btn" style="background-color:rgb(1,159,208);">Register</button></div>
         </form>
     </div>
