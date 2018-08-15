@@ -4,7 +4,7 @@ from django.db import models
 
 
 
-class parentreg(models.Model):
+class parent(models.Model):
     fnm = models.CharField(max_length=40)
     mnm = models.CharField(max_length=40)
     lnm = models.CharField(max_length=40)
