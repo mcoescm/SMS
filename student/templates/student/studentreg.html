@@ -38,7 +38,9 @@
 			<b style="font-size:18px; ">Registration Form</b></div>
 		
 		<div class="card-block" style="margin-left: 20px;margin-right: 20px;  ">
-			<form ><br>
+			<form action="{% url 'student:Student_save' %}" method="">
+                {% csrf_token %}
+                <br>
 				<div class="row">
 					<div class="col-sm-12"><label>Full Name :</label></div>
 				</div>
@@ -247,7 +249,7 @@
 	{
 		var pin = document.getElementById("pinn");		
 		var pinv = pin.value;
-		alert(pinv);
+
 		if(isNaN(pinv))
 		{
 			document.getElementById("pinn").value="";
