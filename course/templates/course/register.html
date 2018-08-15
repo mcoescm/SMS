@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCM</title>
+    <link rel="stylesheet" href="{% static 'course/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{% static 'course/css/simple-line-icons.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css"/>
+    <link rel="stylesheet" href="{% static 'course/css/Login-Form-Clean.css' %}"/>
+    <link rel="stylesheet" href="{% static 'course/css/styles.css' %} "/>
+</head>
+
+<body style="background-color:rgb(241,247,252);">
+    <div class="login-clean" style="height:649px;">
+        <form action=" {% url 'course:registercourse' %}" method="post" data-aos="fade" data-aos-duration="600" data-aos-delay="150" id="mform" style="margin-top:59px;width:364px;max-width:348px;">
+           {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon-notebook" style="color:rgb(1,159,208);"></i></div>
+            <div class="form-group"><input class="form-control" type="text" name="cid" required="" placeholder="Course ID" ></div>
+            <div class="form-group"><input class="form-control" type="text" name="cnm" required="" placeholder="Course Name"></div>
+            <div class="form-group"><select class="form-control" name="dnm" required=""><optgroup label="Select Department Name"><option value="MCA">MCA</option><option value="MBA">MBA</option><option value="CS">CS</option><option value="IT">IT</option></optgroup></select></div>
+            <div
+                class="form-group"><button class="btn btn-primary btn-block" type="submit" id="btn" style="background-color:rgb(1,159,208);">Register</button></div>
+    </form>
+    </div>
+    <script src="{% static 'course/js/jquery.min.js'%}"></script>
+    <script src="{% static 'course/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'course/js/bs-animation.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</body>
+
+</html>
