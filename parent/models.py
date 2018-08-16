@@ -14,7 +14,6 @@ class parent(models.Model):
     pin = models.CharField(max_length=40)
     gender = models.CharField(max_length=40)
     dob = models.DateField()
-    age = models.CharField(max_length=3)
     occ = models.CharField(max_length=40)
     phno = models.CharField(max_length=10)
     email = models.CharField(unique=True,max_length=40)
