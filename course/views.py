@@ -29,7 +29,7 @@ def updatecourse(request):
     return render(request, "course/update.html")
 
 def update(request):
-    coursenm=request.POST['hide']
+    coursenm=request.POST['hiden']
     #return HttpResponse(coursenm)
     obj=course.objects.filter(coursename=coursenm)
 
@@ -37,3 +37,12 @@ def update(request):
     dict={"data":obj,"alldata":obj2}
 
     return render(request , "course/updatecourse.html", dict )
+
+def updatecoursefinal(request):
+    coursenm=request.POST['cnm']
+    cid=request.POST['cid']
+    did=request.POST['selectdept']
+
+    #obj=course.objects.get(pk=oldcid)
+    course.objects.filter(pk=cid).update(coursename=coursenm, courseid=cid, dept_id=did)
+    return HttpResponse("success")
