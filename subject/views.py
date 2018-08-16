@@ -17,7 +17,8 @@ def register(request):
     cnm=request.POST["coursename"]
     obj=subject()
     obj2=course()
-    obj2.courseid=course.objects.get(coursename=cnm)
+    temp=course.objects.get(coursename=cnm)
+    obj2.courseid=temp.courseid
     obj.subjectid=subid
     obj.subjectname=subname
     obj.courseid_id=obj2.courseid
