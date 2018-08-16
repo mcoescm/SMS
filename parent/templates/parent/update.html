@@ -1,17 +1,16 @@
 <html>
 <body onload="f() ">
-<form action="{% url 'course:update' %}" method="post">
+<form action="{% url 'parent:update' %}" method="post">
     {% csrf_token %}
-<input type="text" name="hiden" id="hiden" style="visibility: hidden">
+<input type="text" name="hiden" id="hiden">
 <input type="submit" id = "submit" style="visibility: hidden">
 
 <script type="application/javascript">
     function f() {
-        var coursenm=prompt("Enter Course name to be updated");
-        document.getElementById("hiden").value =coursenm;
+        var email=prompt("Enter email id of parent :");
+        document.getElementById("hiden").value =email;
         document.getElementById("submit").click();
     }
-
 
 
 </script>

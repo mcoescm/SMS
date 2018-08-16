@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from course.models import course
 from subject.models import subject
+
 # Create your views here.
 def index(request):
-    #return HttpResponse("Hello rohan from subject")
     obj=course()
     obj=course.objects.all();
     dict={"dept":obj}
@@ -25,9 +25,24 @@ def register(request):
     obj.save()
     return HttpResponse("success")
 
+def updatesubject(request):
+    return render(request,"subject/update.html")
+
+def update(request):
+    subnm = request.POST['hiden']
+    obj = subject.objects.filter(subjectname=subnm)
+    obj2 = course.objects.all()
+    dict = {"data": obj, "alldata": obj2}
+
+    return render(request, "subject/updatesubject.html", dict)
 
 
-
+def finalupdate(request):
+    subjectnm=request.POST['snm']
+    sid=request.POST['sid']
+    cid=request.POST['selectcourse']
+    subject.objects.filter(pk=sid).update(subjectname = subjectnm,courseid_id=cid)
+    return HttpResponse("success")
 
 
 

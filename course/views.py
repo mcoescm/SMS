@@ -30,9 +30,7 @@ def updatecourse(request):
 
 def update(request):
     coursenm=request.POST['hiden']
-    #return HttpResponse(coursenm)
     obj=course.objects.filter(coursename=coursenm)
-
     obj2 = department.objects.all()
     dict={"data":obj,"alldata":obj2}
 
