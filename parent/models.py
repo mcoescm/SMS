@@ -17,6 +17,5 @@ class parent(models.Model):
     age = models.CharField(max_length=3)
     occ = models.CharField(max_length=40)
     phno = models.CharField(max_length=10)
-    unm = models.CharField(max_length=40)
-    email = models.CharField(max_length=40)
+    email = models.CharField(unique=True,max_length=40)
     pwd = models.CharField(max_length=40)

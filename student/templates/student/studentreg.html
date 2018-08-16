@@ -23,7 +23,7 @@
 	}
 	body
 	{
-		background-color: #2B547E;
+		background-color: white;
 	}
 </style>
 
@@ -216,13 +216,6 @@
 
 	function age()
 	{
-		/*var dtt =  document.getElementById("dt").value;		
-		var calc = dtt.substr(0,4);
-		var today = new Date();
-		var yyyy =  today.getFullYear();
-		var aaa = yyyy - calc;		
-		document.getElementById("ages").value = aaa;*/
-
 		var udate=document.getElementById("dt").value.substr(0,4);
 		var cdate=new Date().getFullYear();
 		document.getElementById("ages").value = cdate-udate;

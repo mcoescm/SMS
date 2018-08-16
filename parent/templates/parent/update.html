@@ -1,0 +1,24 @@
+<html>
+<body onload="f() ">
+<form action="{% url 'parent:update' %}" method="post">
+    {% csrf_token %}
+<input type="text" name="hiden" id="hiden">
+<input type="submit" id = "submit" style="visibility: hidden">
+
+<script type="application/javascript">
+    function f() {
+        var email=prompt("Enter email id of parent :");
+        document.getElementById("hiden").value =email;
+        document.getElementById("submit").click();
+    }
+
+
+</script>
+</form>
+
+</body>
+
+
+
+
+</html>
