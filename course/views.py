@@ -26,4 +26,14 @@ def registercourse(request):
 
 
 def updatecourse(request):
-    return render(request, "course/updatecourse.html")
+    return render(request, "course/update.html")
+
+def update(request):
+    coursenm=request.POST['hide']
+    #return HttpResponse(coursenm)
+    obj=course.objects.filter(coursename=coursenm)
+
+    obj2 = department.objects.all()
+    dict={"data":obj,"alldata":obj2}
+
+    return render(request , "course/updatecourse.html", dict )

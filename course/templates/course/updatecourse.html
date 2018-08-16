@@ -20,16 +20,34 @@
         <form method="post" data-aos="fade" data-aos-duration="600" data-aos-delay="150" id="mform" style="margin-top:3px;width:364px;max-width:348px;">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon-notebook" style="color:rgb(1,159,208);"></i></div>
-            <div class="form-group" id="fg1"><label>Course ID :</label><input class="form-control" type="text" name="cnm"></div>
-            <div class="form-group" id="fg2"><label>Course Name :</label><input class="form-control" type="text" name="cid" required="" pattern="[0-9]+"></div>
-            <div class="form-group" id="fg3"><label>Department Name:</label><select class="form-control"></select></div>
+            <div class="form-group" id="fg1"><label>Course ID :</label><input class="form-control" type="text" name="cnm" value="{% for i in data%}{{ i.coursename }}{% endfor %}"></div>
+            <div class="form-group" id="fg2"><label>Course Name :</label><input class="form-control" type="text" name="cid" value="{% for i in data%}{{ i.courseid }}{% endfor %}" required="" pattern="[0-9]+"></div>
+            <div class="form-group" id="fg3"><label>Department Name:</label>
+            <select class="form-control" onclick="call()">
+                <option id = "first" name="{% for i in data %}{{ i.dept_id }}{% endfor %}" value="{% for i in data%}{{ i.dept_id }}{% endfor %}">{% for i in data%}{{ i.dept_id }}{% endfor %}</option>
+
+             {% for i in alldata %}
+                     <option disabled="" id = "did" name="{{ i.deptname}}" value="{{ i.deptname }}">
+                        {{ i.deptname }}</option>{% endfor %}
+            </select></div>
+
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="btn" style="background-color:rgb(1,159,208);">Update</button></div>
         </form>
     </div>
      <script src="{% static 'course/js/jquery.min.js'%}"></script>
     <script src="{% static 'course/js/bootstrap.min.js'%}"></script>
     <script src="{% static 'course/js/bs-animation.js'%}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+
+<script type="application/javascript">
+    function call()
+{
+	document.getElementById("first").remove();
+	document.getElementById("did").removeattribute("disabled");
+
+}
+</script>
 </body>
 
 </html>
