@@ -1,13 +1,13 @@
 <html>
 <body onload="f() ">
-<form action="{% url 'course:update' %}" method="post">
+<form action="{% url 'subject:update' %}" method="post">
     {% csrf_token %}
 <input type="text" name="hiden" id="hiden" style="visibility: hidden">
 <input type="submit" id = "submit" style="visibility: hidden">
 
 <script type="application/javascript">
     function f() {
-        var coursenm=prompt("Enter Course name to be updated");
+        var coursenm=prompt("Enter Subject name to be updated");
         document.getElementById("hiden").value =coursenm;
         document.getElementById("submit").click();
     }

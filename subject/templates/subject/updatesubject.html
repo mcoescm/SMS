@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCM</title>
+     <link rel="stylesheet" href="{% static 'subject/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'subject/css/font-awesome.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'subject/css/ionicons.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'subject/css/simple-line-icons.min.css'%}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="{% static 'subject/css/Login-Form-Clean.css'%}"/>
+    <link rel="stylesheet" href="{% static 'subject/css/styles.css'%}">
+</head>
+
+<body style="background-color:rgb(241,247,252);">
+    <div class="login-clean" style="height:649px;">
+        <form method="post" action="{% url 'subject:finalupdate' %}" data-aos="fade" data-aos-duration="600" data-aos-delay="150" id="mform" style="margin-top:3px;width:364px;max-width:348px;">
+        {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="fa fa-refresh" style="color:rgb(1,159,208);"></i></div>
+
+            <div class="form-group" style="text-align: center" id="fg2"><label>Subject Name :</label><input class="form-control" type="text" name="snm" required="" value="{% for i in data%}{{ i.subjectname }}{% endfor %}"></div>
+            <div class="form-group" style="text-align: center" id="fg3"><label>Department Name:</label>
+
+                <select class="form-control"  onclick="call()" onblur="enab()" name="selectcourse">
+                <option id = "first" name="{% for i in data %}{{ i.courseid_id }}{% endfor %}" value="{% for i in data%}{{ i.courseid_id }}{% endfor %}">{% for i in data%}{{ i.courseid_id  }}{% endfor %}</option>
+
+
+                {% for i in alldata %}
+                     <option id = "did" name="{{ i.courseid }}" value="{{ i.courseid }}">
+                        {{ i.courseid }}</option>{% endfor %}
+
+            </select></div>
+
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="btn" style="background-color:rgb(1,159,208);">Update</button></div>
+
+            <input class="form-control" style="visibility: hidden" type="text" name="sid"  id = "sid" value="{% for i in data%}{{ i.subjectid }}{% endfor %}">
+        </form>
+    </div>
+    <<script src="{% static 'subject/js/jquery.min.js'%}"></script>
+    <script src="{% static 'subject/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'subject/js/bs-animation.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+
+<script type="application/javascript">
+    function call()
+{
+	document.getElementById("first").remove();
+	document.getElementById("did").removeAttribute("disabled");
+
+}
+
+function enab() {
+        document.getElementById("cid").removeAttribute("disabled");
+    }
+    </script>
+
+</body>
+
+</html>
