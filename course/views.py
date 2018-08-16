@@ -23,3 +23,7 @@ def registercourse(request):
         return HttpResponse("saved")
     except:
         return HttpResponse()
+
+
+def updatecourse(request):
+    return render(request, "course/updatecourse.html")
