@@ -22,8 +22,8 @@ class teacher(models.Model):
     username=models.CharField(max_length=40)
     password=models.CharField(max_length=40)
     email=models.CharField(unique=True, max_length=40)
-    dept=models.ForeignKey(department)
-    course_id=models.ForeignKey(course, on_delete=models.CASCADE())
-    subject=models.ForeignKey(subject, on_delete=models.CASCADE())
+    dept=models.ForeignKey(department, on_delete=models.CASCADE)
+    course_id=models.ForeignKey(course, on_delete=models.CASCADE)
+    subject=models.ForeignKey(subject, on_delete=models.CASCADE)
 
 
