@@ -17,7 +17,6 @@ def register(request):
     pin = request.POST['pin']
     gender = request.POST['get']
     dob = request.POST['dob']
-    ages = request.POST['ages']
     occ= request.POST['occupation']
     contact = request.POST['contact']
     email = request.POST['email']
@@ -33,7 +32,6 @@ def register(request):
     obj.gender=gender
     obj.dob=dob
     obj.city=city
-    obj.age=ages
     obj.occ=occ
     obj.phno=contact
     obj.pwd=password
@@ -64,7 +62,6 @@ def finalupdate(request):
     pin = request.POST['pin']
     gender = request.POST['get']
     dob = request.POST['dob']
-    ages = request.POST['ages']
     occ = request.POST['occupation']
     contact = request.POST['contact']
     email = request.POST['email']
@@ -72,7 +69,7 @@ def finalupdate(request):
     id = request.POST['hide']
     # subject.objects.filter(pk=sid).update(subjectname = subjectnm,courseid_id=cid)
     parent.objects.filter(pk=id).update(fnm=fnm,mnm=mnm,lnm=lnm,address=address,state=state,city=city,pin=pin,gender=gender,
-                                        dob=dob,age=ages,occ=occ,phno=contact,email=email,pwd=password)
+                                        dob=dob,occ=occ,phno=contact,email=email,pwd=password)
     return HttpResponse("Saved")
 
 

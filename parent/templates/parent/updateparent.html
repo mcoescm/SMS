@@ -106,6 +106,19 @@
 					<div class="col-sm-1"></div>
 					<div class="col-sm-5">
 						<div class="form-group">
+								<label>Age :</label>
+								<input type="text" name="ages" id = "ages" value="{% for i in data %}{{ i.age }}{% endfor %}"  class="form-control" disabled="" placeholder="Enter Date of Birth First" required>
+							</div>
+					</div>
+
+
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="form-group">
 							<label>Occupation :</label>
 							<input type="text"  name="occupation" value="{% for i in data %}{{ i.occ }}{% endfor %}" class="form-control"  placeholder="Your Occupation" required>
 						</div>
@@ -136,14 +149,14 @@
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label>Password :</label>
-							<input type="password" name="password" onblur="enab()" value="{% for i in data %}{{ i.pwd }}{% endfor %}" id="pass" class="form-control" placeholder="Create Your Password" required>
+							<input type="password" name="password"  value="{% for i in data %}{{ i.pwd }}{% endfor %}" id="pass" class="form-control" placeholder="Create Your Password" required>
 						</div>
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label>Confirm Password :</label>
-							<input type="password" onblur="enab()" name="cpassword" value="{% for i in data %}{{ i.pwd }}{% endfor %}" id="cpass" class="form-control"  placeholder="Confirm Your Password" required>
+							<input type="password" name="cpassword" value="{% for i in data %}{{ i.pwd }}{% endfor %}" id="cpass" class="form-control"  placeholder="Confirm Your Password" required>
 						</div>
 					</div>
 
@@ -175,13 +188,6 @@
 </div>
 
 <script type="text/javascript">
-
-
-    function enab() {
-        document.getElementById("ages").removeAttribute("disabled");
-
-    }
-
 
 
 
@@ -242,22 +248,7 @@
 		}
 
 	}
-    function gen() {
 
-        {% for i in data %}
-            var a={{ i.gender }};
-        {% endfor %}
-
-    if(a=="Male")
-    {
-
-    }
-    else if(a=="Female")
-    {
-
-    }
-
-    }
 
 
 </script>
