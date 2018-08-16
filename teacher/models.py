@@ -6,7 +6,7 @@ from course.models import department
 
 # Create your models here.
 class teacher(models.Model):
-    teacher_id = models.CharField(primary_key=True, max_length=40)
+    teacher_id = models.AutoField(primary_key=True)
     isadmin=models.CharField(max_length=10)
     firstname=models.CharField(max_length=40)
     middlename=models.CharField(max_length=40)
