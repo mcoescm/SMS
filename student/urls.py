@@ -7,5 +7,7 @@ urlpatterns = [
     path('', views.studreg, name='student_register'),
     path('stud_save/', views.studsave, name='Student_save'),
     path('test/', views.getData, name='testpage'),
+    path('update1/', views.studupdate, name="updatestud"),
+    path('update/', views.update, name='update_student'),
     ]
 
