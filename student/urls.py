@@ -6,5 +6,6 @@ app_name="student"
 urlpatterns = [
     path('', views.studreg, name='student_register'),
     path('stud_save/', views.studsave, name='Student_save'),
+    path('test/', views.getData, name='testpage'),
     ]
 

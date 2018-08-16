@@ -25,6 +25,10 @@
 	{
 		background-color: white;
 	}
+    .hide
+    {
+        visibility: hidden;
+    }
 </style>
 
 </head>
@@ -34,32 +38,60 @@
 	<div style="width: 80%; margin-left: 10%;">
 <br>
 	<div class="card " >
+
+
 		<div class="card-header "  ><i class="fa fa-address-card-o icon " ></i>&nbsp;&nbsp;&nbsp; &nbsp;
 			<b style="font-size:18px; ">Registration Form</b></div>
 		
 		<div class="card-block" style="margin-left: 20px;margin-right: 20px;  ">
-			<form action="{% url 'student:Student_save' %}" method="">
+			<form action="{% url 'student:Student_save' %}" method="post">
                 {% csrf_token %}
                 <br>
 				<div class="row">
-					<div class="col-sm-12"><label>Full Name :</label></div>
+					<div class="col-sm-4"><label>First Name :</label></div>
+                    <div class="col-sm-4"><label>Middle Name :</label></div>
+                    <div class="col-sm-4"><label>Last Name :</label></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4"> <input type="text" class="form-control" name="sfname"placeholder="Your Name" required></div>
-					<div class="col-sm-4"><input type="text" name="smname" class="form-control" placeholder="Middle Name" required></div>
-					<div class="col-sm-4"><input type="text" name="slname" class="form-control" placeholder="Last Name" required></div>
+					<div class="col-sm-4"> <input type="text" class="form-control" name="sfname"placeholder="Your Name" value="{{ fname }}" required></div>
+					<div class="col-sm-4"><input type="text" name="smname" class="form-control" placeholder="Middle Name" value="{{ mname }}" required></div>
+					<div class="col-sm-4"><input type="text" name="slname" onblur="get()" class="form-control" placeholder="Last Name" value="{{ lname }}" required></div>
 				</div>
+                 <input type="submit" id="s1" name="s"  value="parent" style="visibility: hidden"/>
 				<br>
-				<div class="row">
-					<div class="col-sm-12"><label>Father Name :</label></div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4"> <select id="ffname" name="ffname" class="form-control"><option value="0">Select First Name</option></select></div>
+            </form>
+            <form action="{% url 'student:Student_save' %}" method="post">
+                {% csrf_token %}
 
-					<div class="col-sm-4"><select id="fmname" name="fmname" class="form-control"> <option value="0">Select Middle Name</option></select></div>
+                <div class="row">
+                    <div class="col-sm-4"><label>Parent First Name :</label></div>
+                    <div class="col-sm-4"><label>Parent Middle Name :</label></div>
+                    <div class="col-sm-4"><label>Parent Last Name :</label></div>
+                </div>
+				<div class="row">
+					<div class="col-sm-4"> <select id="ffname" name="ffname" class="form-control" >
+                    {% for x in pdata %}
+                        <option value="{{ x.fnm }}">{{x.fnm  }}</option>
 
-					<div class="col-sm-4"><select id="flname" name="flname" class="form-control"><option value="0">Select Last Name</option></select></div>
+                    {% endfor %}
+
+                    </select></div>
+
+					<div class="col-sm-4"><select id="fmname" name="fmname" class="form-control">
+                    {% for x in pdata %}
+                        <option value="{{ x.mnm }}">{{x.mnm  }}</option>
+
+                    {% endfor %}
+                    </select></div>
+
+					<div class="col-sm-4"><select id="flname" name="flname" class="form-control">
+                    {% for x in pdata %}
+                        <option value="{{ x.lnm }}">{{x.lnm  }}</option>
+
+                    {% endfor %}
+                    </select></div>
 				</div>
+
 
 				<br>
 
@@ -146,48 +178,36 @@
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="form-group">
-							<label>Username :</label>
-							<input type="text" name="username" class="form-control" placeholder="Pick a Username" required>
-						</div>
-					</div>
-					<div class="col-sm-1"></div>
-					<div class="col-sm-5">
-						<div class="form-group">
 							<label>Password :</label>
 							<input type="password" name="password" id="pass" class="form-control" placeholder="Create Your Password" required>
 						</div>
 					</div>
-					
-				</div>
-
-
-				
-				<div class="row">
+					<div class="col-sm-1"></div>
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label>Confirm Password :</label>
 							<input type="password" name="cpassword" id="cpass" class="form-control"  placeholder="Confirm Your Password" required>
 						</div>
 					</div>
-					<div class="col-sm-1"></div>
-					<div class="col-sm-5">
-						
-					</div>
 					
 				</div>
+					
+                    <input type="text" class="hide" name="sfname" value="{{ fname }}">
+                    <input type="text" class="hide" name="smname" value="{{ mname }}">
+                    <input type="text" class="hide" name="slname" value="{{ lname }}">
 				<br><br>
 
 				
 					
 						<div class="form-group text-right" style=" float: right; width: 30%; margin-right: 10%;">
-					<input type="submit" name="submit" value="Register" onclick="checkpass()" class=" form-control btn-success ">
+					<input type="submit" name="s"  id="s2" value="Register" onclick="checkpass()" class=" form-control btn-success ">
 
 					</div>
 					
 					
 			
 
-<br><br><br><br>	
+<br><br>
 			</form>
 
 		</div>
@@ -219,15 +239,12 @@
 		var udate=document.getElementById("dt").value.substr(0,4);
 		var cdate=new Date().getFullYear();
 		document.getElementById("ages").value = cdate-udate;
-
 	}
 
 	function checkpass()
 	{
 		var p=document.getElementById("pass");
 		var c=document.getElementById("cpass");
-
-		
 		if(p.value!=c.value)
 		{
 			c.setCustomValidity("Password doesn't Match!!!!");
@@ -236,7 +253,6 @@
 		{
 			c.setCustomValidity("");
 		}
-
 	}
 	function checkpin()
 	{
@@ -250,8 +266,13 @@
 		}
 
 	}
+	function get() {
 
-	
+            document.getElementById("s1").click();
+
+    }
+
+
 </script>
 
 </body>

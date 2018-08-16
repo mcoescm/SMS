@@ -27,7 +27,7 @@ def register(request):
     obj.lnm=lnm
     obj.address=address
     obj.state=state
-    obj.city=state
+    obj.city=city
     obj.pin=pin
     obj.gender=gender
     obj.dob=dob

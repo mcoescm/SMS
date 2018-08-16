@@ -87,7 +87,7 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'root', #change password for your mysql
         'HOST':'localhost',
-        'PORT':''
+        'PORT': ''
 
     }
 }
