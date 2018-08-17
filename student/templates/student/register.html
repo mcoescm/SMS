@@ -96,8 +96,36 @@
 				<br>
 
 				<div class="row">
-					<div class="col-sm-8"><div class="form-group"><label>Address :</label><textarea rows="2" name="addr" class="form-control" placeholder="Address" required></textarea></div></div>
-					<div class="col-sm-4"></div>
+					<div class="col-sm-7"><div class="form-group"><label>Address :</label><textarea rows="4" name="addr" class="form-control" placeholder="Address" required></textarea></div></div>
+					<div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Select Deparment :</label>
+                                    <select name="dept" id="dept" onchange="getcourse()"  class="form-control">
+                                         {% for x in dept %}
+                                            <option value="{{ x.deptname }}">{{x.deptname  }}</option>
+
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Select Course :</label>
+                                    <select name="course" id="course" class="form-control">
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
 
 
 						
@@ -271,6 +299,24 @@
             document.getElementById("s1").click();
 
     }
+    function getcourse() {
+
+    var val=document.getElementById("dept").value;
+    select=document.getElementById("course");
+        select.options.length = 0;
+        {% for x in course %}
+
+            if(val=='{{ x.dept_id}}')
+            {
+                var option = document.createElement("option");
+                option.text = "{{ x.coursename }}";
+                option.value="{{ x.coursename }}";
+                select.add(option,0);
+            }
+
+        {% endfor %}
+    }
+
 
 
 </script>
