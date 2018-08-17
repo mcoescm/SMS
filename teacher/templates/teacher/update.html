@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration Page</title>
+	<title>Registration Page teacher</title>
 
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
 	}
 	body
 	{
-		background-color: white;
+		background-color: #2B547E;
 	}
     .hide
     {
@@ -35,7 +35,7 @@
 </style>
 
 </head>
-<body onload="setData()" >
+<body onload="setData()">
 <script type="text/javascript">
     function getStud() {
         	    var val=document.getElementById("fnm").value;
@@ -51,59 +51,67 @@
 
 <div class="container" >
 	<div style="width: 80%; margin-left: 10%;">
-
-    <form action="{% url 'student:update_student' %}" method="post">
-        {% csrf_token %}
-        <input type="text" id="stud" name="studemail" class="hide">
-        <input type="submit" id="studs" name="submit" value="Get" class="hide">
-
-    </form>
 <br>
 	<div class="card " >
 		<div class="card-header " ><i class="fa fa-address-card-o icon " style="color: yellow;"></i>&nbsp;&nbsp;&nbsp; &nbsp;<b>Registration Form</b></div>
 
 		<div class="card-block" style="margin-left: 20px;margin-right: 20px;  ">
-			<form action="{% url 'student:update_student' %}" method="post"><br>
-				{% csrf_token %}
+        <form action="{% url 'teacher:Upadate_teacher' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="stud" name="studemail" class="hide">
+        <input type="submit" id="studs" name="submit" value="Get" class="hide">
+
+    </form>
+			<form action="{% url 'teacher:Upadate_teacher' %}" method="post"><br>
+                {% csrf_token %}
+				<br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">&nbsp;
+                            <label>isAdmin :</label>&nbsp;
+                            <label><input type="radio" name="role" value="YES"> &nbsp;&nbsp;Yes </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="role" value="NO" required> &nbsp;&nbsp;No </label>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+					<div class="col-sm-4">
+                        <div class="form-group">
+                                <label>Select Department: </label>
+                            <select name='dept' id="dept" onchange="getcourse()" class="form-control">
+                                {% for i in dept %} <option value="{{ i.deptname }}">{{ i.deptname }}</option>{% endfor %}</select>
+
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Select Course :</label>
+                            <select name="course" id="course" onchange="getSubject()" class="form-control" required></select>
+                         </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Select Subject :</label>
+                            <select name="subject" id="subject" class="form-control" required></select>
+                         </div>
+                    </div>
+				</div>
+
                 <div class="row">
 					<div class="col-sm-12"><label>Full Name :</label></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4"> <input type="text" id="fnm" class="form-control" name="fname"placeholder="Your Name" required value="{% for i in data %}{{ i.fnm }}{% endfor %}"></div>
-					<div class="col-sm-4"><input type="text" name="mname" class="form-control" placeholder="Middle Name" required value="{% for i in data %}{{ i.mnm }}{% endfor %}"></div>
-					<div class="col-sm-4"><input type="text" name="lname" class="form-control" placeholder="Last Name" required value="{% for i in data %}{{ i.lnm }}{% endfor %}"></div>
+					<div class="col-sm-4"> <input type="text" id="fnm" class="form-control" name="fname"placeholder="Your Name" required value="{% for i in data %}{{ i.firstname }}{% endfor %}"></div>
+					<div class="col-sm-4"><input type="text" name="mname" class="form-control" placeholder="Middle Name" required value="{% for i in data %}{{ i.middlename }}{% endfor %}"></div>
+					<div class="col-sm-4"><input type="text" name="lname" class="form-control" placeholder="Last Name" required value="{% for i in data %}{{ i.lastname }}{% endfor %}"></div>
 				</div>
 				<br>
 
 				<div class="row">
-					<div class="col-sm-7"><div class="form-group"><label>Address :</label><textarea rows="4" name="addr" class="form-control text-left" placeholder="Address" required >{% for i in data %}{{ i.address }}{% endfor %} </textarea></div></div>
+					<div class="col-sm-8"><div class="form-group"><label>Address :</label><textarea rows="4" name="addr" class="form-control text-left" placeholder="Address" required >{% for i in data %}{{ i.address }}{% endfor %} </textarea></div></div>
 					<div class="col-sm-1"></div>
-                    <div class="col-sm-4">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Select Deparment :</label>
-                                    <select name="dept" id="dept" onchange="getcourse()"  class="form-control">
 
-                                        {% for i in data %}<option value="{{ i.dept_id }}" selected>{{ i.dept_id }}</option>{% endfor %}
-                                    </select>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Select Course :</label>
-                                    <select name="course" id="course" class="form-control">
-                                        {% for x in course %}
-                                            <option value="{{ x.coursename }}">{{ x.coursename }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 				</div>
 
 				<div class="row">
@@ -166,7 +174,7 @@
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label>Contact No :</label>
-							<input type="text"  name="contact" value="{% for i in data %}{{ i.mobile }}{% endfor %}" maxlength="10" minlength="10" class="form-control" placeholder="Mobile Number"  id = "phno" onchange="checkphno()" required>
+							<input type="text"  name="contact" value="{% for i in data %}{{ i.contact }}{% endfor %}" maxlength="10" minlength="10" class="form-control" placeholder="Mobile Number"  id = "phno" onchange="checkphno()" required>
 						</div>
 					</div>
 					<div class="col-sm-1"></div>
@@ -199,11 +207,11 @@
 
 
                     <div class="form-group" style="margin-left: 35%; width: 30%;">
-					<input type="submit"  name="submit" value="Update Student" onclick="checkpass()" class=" form-control btn-success ">
+					<input type="submit"  name="submit" value="Update Teacher" onclick="checkpass()" class=" form-control btn-success ">
 
 					</div>
 
-            <input type="text" id = "hide" style="visibility: hidden" name="hide" value="{% for i in data %}{{ i.id }} {% endfor %}">
+            <input type="text" id = "hide" style="visibility: hidden" name="hide" value="{% for i in data %}{{ i.teacher_id }} {% endfor %}">
 			</form>
 
 
@@ -216,6 +224,13 @@
 <script type="text/javascript">
 
 
+    function enab() {
+        document.getElementById("ages").removeAttribute("disabled");
+
+    }
+
+
+
 
 	function checkphno()
 	{
@@ -224,7 +239,7 @@
 		if(isNaN(ab))
 		{
 
-			a.setCustomValidity("Expected Mobile Number !!!");
+			a.setCustomValidity("I expect a Mobile No, darling!");
 		}
 
 
@@ -233,7 +248,6 @@
 
 	function age()
 	{
-
 		var udate=document.getElementById("dt").value.substr(0,4);
 		var cdate=new Date().getFullYear();
 		document.getElementById("ages").value = cdate-udate;
@@ -282,8 +296,56 @@ function setData() {
 }
 
 
+ function getcourse() {
+
+    var val=document.getElementById("dept").value;
+    select=document.getElementById("course");
+          select.options.length = 0;
+        {% for x in course %}
+
+            if(val=='{{ x.dept_id}}')
+            {
+                var option = document.createElement("option");
+                option.text = "{{ x.coursename }}";
+                option.value="{{ x.coursename }}";
+                select.add(option,0);
+            }
+
+        {% endfor %}
+    }
+    function getSubject() {
+        var val=document.getElementById("course").value;
+        select=document.getElementById("subject");
+        select.options.length = 0;
+        var s="";
+        {% for i in course %}
+            if(val=='{{ i.coursename }}')
+            {
+                s='{{ i.courseid }}'
+            }
+
+        {% endfor %}
+
+            setSub(s);
+
+    }
+    function setSub(val) {
+
+
+     select=document.getElementById("subject");
+        {% for x in subject %}
+
+            if(val=='{{ x.courseid_id }}')
+            {
+                var option = document.createElement("option");
+                option.text ="{{ x.subjectname  }}";
+                option.value="{{ x.subjectname}}";
+                select.add(option,0);
+            }
+        {% endfor %}
+    }
 
 </script>
 
-</body >
+</body>
 </html>
