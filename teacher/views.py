@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from course.models import course, department
 from subject.models import subject
 from subject.models import subject
-from teacher.models import teacher
+from teacher.models import teacher,examschedule
 
 
 # Create your views here.
@@ -13,6 +13,13 @@ def index(request):
     subobj=subject.objects.all()
     dict={"dept":deptobj , "course":courseobj, "subject":subobj}
     return render(request, "teacher/register.html",dict)
+
+def update(request):
+    deptobj = department.objects.all()
+    courseobj = course.objects.all()
+    subobj = subject.objects.all()
+    context = {"dept": deptobj, "course": courseobj, "subject": subobj}
+    return render(request, "teacher/update.html", context)
 
 """
 def setdata(request):
@@ -69,7 +76,48 @@ def register(request):
     return HttpResponse("success")
 
 
-def examschedule(request):
+def updation(request):
+    btn = request.POST['submit']
+
+    if btn == "Get":
+        mail = request.POST['studemail']
+        obj = teacher.objects.filter(email=mail)
+        #context = {"data": obj}
+        deptobj = department.objects.all()
+        courseobj = course.objects.all()
+        subobj = subject.objects.all()
+        context = {"dept": deptobj, "course": courseobj, "subject": subobj, "data": obj}
+        return render(request, "teacher/update.html", context)
+    else:
+        dp = request.POST['dept']
+        cr = request.POST['course']
+        su = request.POST['subject']
+        dt = department.objects.get(deptname=dp)
+        cour = course.objects.get(coursename=cr)
+        sub = subject.objects.get(subjectname=su)
+        admin = request.POST['role']
+        fnm = request.POST['fname']
+        mnm = request.POST['mname']
+        lnm = request.POST['lname']
+        address = request.POST['addr']
+        state = request.POST['state']
+        city = request.POST['city']
+        pin = request.POST['pin']
+        gender = request.POST['get']
+        dob = request.POST['dob']
+        contact = request.POST['contact']
+        email = request.POST['email']
+        password = request.POST['password']
+        id = request.POST['hide']
+        teacher.objects.filter(pk=id).update(firstname=fnm, middlename=mnm, lastname=lnm, address=address, state=state,
+                                             city=city, pin=pin,
+                                             gender=gender, isadmin=admin, dob=dob, contact=contact, email=email,
+                                             password=password, dept_id=dt.deptname, course_id_id=cour.courseid,
+                                             subject_id=sub.subjectid)
+        return HttpResponse("<h3>" + fnm + " Your updation is successfully done....</h3>")
+
+
+def exams(request):
     deptobj=department.objects.all()
     courseobj=course.objects.all()
     dict={"department":deptobj, "course":courseobj}
@@ -81,7 +129,6 @@ def findsubject(request):
     cid=request.POST['course']
     obj=course.objects.get(coursename=cid)
     subjectobj=subject.objects.all().filter(courseid=obj.courseid)
-
     dict={"subjectname":subjectobj, "coursedata":obj.coursename}
     return render(request,"teacher/exam_schedule.html", dict)
 
@@ -98,7 +145,7 @@ def schedule(request):
     var=""
 
     for i in range(0,len(sub)) :
-        exam = examschedule(request)
+        exam = examschedule()
         cor = course.objects.all().get(coursename=cour[i])
         sb = subject.objects.all().get(subjectname=sub[i])
         exam.course_id = cor.courseid
@@ -122,10 +169,5 @@ def schedule(request):
         obj.timefrom=f
         obj.timeto=t
         obj.save()'''
-
-
-
-
-
 
 

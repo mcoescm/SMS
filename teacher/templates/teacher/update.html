@@ -56,13 +56,13 @@
 		<div class="card-header " ><i class="fa fa-address-card-o icon " style="color: yellow;"></i>&nbsp;&nbsp;&nbsp; &nbsp;<b>Registration Form</b></div>
 
 		<div class="card-block" style="margin-left: 20px;margin-right: 20px;  ">
-        <form action="{% url 'teacher:Upadate_teacher' %}" method="post">
+        <form action="{% url 'teacher:update' %}" method="post">
         {% csrf_token %}
         <input type="text" id="stud" name="studemail" class="hide">
         <input type="submit" id="studs" name="submit" value="Get" class="hide">
 
     </form>
-			<form action="{% url 'teacher:Upadate_teacher' %}" method="post"><br>
+			<form action="{% url 'teacher:update' %}" method="post"><br>
                 {% csrf_token %}
 				<br>
                 <div class="row">
