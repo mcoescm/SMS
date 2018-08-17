@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from course.models import course, department
 from subject.models import subject
 from subject.models import subject
-from teacher.models import teacher, examschedule
+from teacher.models import teacher
 
 
 # Create your views here.
