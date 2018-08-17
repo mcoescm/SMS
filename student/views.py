@@ -63,9 +63,9 @@ def studsave(request):
         obj.pin = pin
         obj.gender = gender
         obj.dob = dob
-        obj.phno = contact
+        obj.mobile = contact
         obj.email = email
-        obj.pwd = password
+        obj.password = password
         obj.save()
         return HttpResponse("Parent " + "" + pfn + " " + dad.lnm + "<br>Student is " + sfnm)
 
@@ -85,6 +85,11 @@ def update(request):
         #return HttpResponse("Email is "+mail)
 
     else :
+        dp=request.POST['dept']
+        cr=request.POST['course']
+        dt = department.objects.get(deptname=dp)
+        cour = course.objects.get(coursename=cr)
+
         fnm = request.POST['fname']
         mnm = request.POST['mname']
         lnm = request.POST['lname']
@@ -101,10 +106,10 @@ def update(request):
         # subject.objects.filter(pk=sid).update(subjectname = subjectnm,courseid_id=cid)
         student.objects.filter(pk=id).update(fnm=fnm, mnm=mnm, lnm=lnm, address=address, state=state, city=city, pin=pin,
                                             gender=gender,
-                                            dob=dob, phno=contact, email=email, pwd=password)
-        return HttpResponse("Saved")
+                                            dob=dob, mobile=contact, email=email, password=password,dept_id=dt.deptname, course_id_id=cour.courseid)
+        return HttpResponse("<h3>"+fnm+" Your Updation Successfully done....</h3>")
 
-        return HttpResponse("Hello")
+
 
 
 
