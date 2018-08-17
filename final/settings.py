@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'parent',
     'testapp',
     'teacher',
+    'login',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

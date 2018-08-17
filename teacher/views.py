@@ -68,3 +68,9 @@ def register(request):
     return HttpResponse("success")
 
 
+def examschedule(request):
+    deptobj=department.objects.all()
+    courseobj=course.objects.all()
+    dict={"department":deptobj, "course":courseobj}
+
+    return render(request, "teacher/exam_schedule.html", dict)
