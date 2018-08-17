@@ -5,15 +5,6 @@
 
 <head>
 
-
-    <style type="text/css">
-
-        .hide
-        {
-            visibility: hidden;
-        }
-
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCM</title>
@@ -29,7 +20,7 @@
 <body>
     <div class="container">
         <div>
-            <form action="{% url 'attendance:findstudents' %}" method="post">
+            <form action="{% url 'attendance:findstudents' %}" method="post" >
                 {% csrf_token %}
             <div class="row" style="margin-top:64px;">
                 <div class="col-4" id="col1">
@@ -38,42 +29,49 @@
                     <div style="margin-top:18px;"><label><b>Course :</b></label></div><select class="form-control" style="margin-top:8px;" name="crs"><optgroup label="Course"></optgroup> <option value="{{ data.course_id_id }}">{{ data.course_id_id }}</option></select></div>
                 <div class="col-4" id="col3">
 
-                      <input class="btn btn-success" type = "submit" onclick="call()" value="Find Students" style="margin-top:55px;">
+                      <input class="btn btn-success" type = "submit"  value="Find Students" style="margin-top:55px;">
 
                 </div>
+        </div>
             </div>
             </form>
         </div>
     </div>
 
-    <form id = "form" style="visibility: hidden">
+    <form action="{% url 'attendance:store' %}" method="get">
+    {% csrf_token %}
     <br><br>
-        <div style="margin-top:30px; margin-left: 40%" class="form-group"><label class="text-center"> <b> Date : </b></label><input class="form-control" type="date" style="width: 30%"></div>
+        <div style="margin-top:30px; margin-left: 40%;" id = "form" class="form-group"><label class="text-center"> <b> Date : </b></label><input class="form-control" name = "dt" type="date" required style="width: 30%"></div>
     <div class="container">
         <div style="margin-top:54px;">
             <div class="table-responsive" id="table1">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
+                            <th>Roll No</th>
                             <th>Student Name</th>
                             <th>Course Name</th>
                             <th>Present</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {% for i in students %}
                         <tr>
-                            <td>{{ i.fnm }} {{ i.mnm }} {{ i.lnm }}</td>
+                            <td> <input type="text" readonly value="{{ i.id }}"> </td>
+                            <td> <input type="text" readonly value="{{ i.fnm }} {{ i.mnm }} {{ i.lnm }}"></td>
                             <td>{{ cnm.coursename }}</td>
-                            <td class="align-items-center"><input type="checkbox" id = "{{ i.id }}" name="{{ i.id }}"></td>
+                            <td class="align-items-center"> <input type="checkbox" id = "{{ i.id }}" name="att" value="{{ i.id }}">   </td>
                         </tr>
                        {%  endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
+    <input type="text" name = "ccid" hidden value="{{ data.course_id_id }}">
 
     </div>
+    <input type="submit" value="Store">
     </form>
     </div>
      <script src="{% static 'course/js/jquery.min.js'%}"></script>
@@ -81,12 +79,7 @@
     <script src="{% static 'course/js/bs-animation.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
 
-<script type="application/javascript">
-    function call() {
-        document.getElementById("form").style.visibility = "visible";
 
-    }
-</script>
 
 </body>
 
