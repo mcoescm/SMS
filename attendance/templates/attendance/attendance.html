@@ -33,7 +33,7 @@
 
                 </div>
         </div>
-            </div>
+
             </form>
         </div>
     </div>
@@ -58,10 +58,10 @@
                     <tbody>
                         {% for i in students %}
                         <tr>
-                            <td> <input type="text" readonly value="{{ i.id }}"> </td>
-                            <td> <input type="text" readonly value="{{ i.fnm }} {{ i.mnm }} {{ i.lnm }}"></td>
+                            <td> <input type="text" class="form-control" readonly value="{{ i.id }}"> </td>
+                            <td> <input type="text" class="form-control" readonly value="{{ i.fnm }} {{ i.mnm }} {{ i.lnm }}"></td>
                             <td>{{ cnm.coursename }}</td>
-                            <td class="align-items-center"> <input type="checkbox" id = "{{ i.id }}" name="att" value="{{ i.id }}">   </td>
+                            <td class="align-items-center"> <input type="checkbox" class="form-control" id = "{{ i.id }}" name="att" value="{{ i.id }}">   </td>
                         </tr>
                        {%  endfor %}
                     </tbody>
@@ -71,7 +71,7 @@
     <input type="text" name = "ccid" hidden value="{{ data.course_id_id }}">
 
     </div>
-    <input type="submit" value="Store">
+    <input type="submit" value="Store" class="btn btn-success" style="float: right;margin-right: 10%;width: 30%; ;">
     </form>
     </div>
      <script src="{% static 'course/js/jquery.min.js'%}"></script>
