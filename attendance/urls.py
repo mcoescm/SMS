@@ -5,6 +5,6 @@ from . import views
 app_name = 'attendance'
 urlpatterns = [
     path('', views.index, name='index'),
-
+    path('find/', views.findstudents, name='findstudents'),
 
 ]
