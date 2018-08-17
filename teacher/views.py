@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from course.models import course, department
 from subject.models import subject
 from subject.models import subject
-from teacher.models import teacher
+from teacher.models import teacher, examschedule
 
 
 # Create your views here.
@@ -88,16 +88,44 @@ def findsubject(request):
 
 
 def schedule(request):
+    cour = request.GET.getlist('crs')
+    sub = request.GET.getlist('subject')
+    dt = request.GET.getlist('date')
+    frm = request.GET.getlist('from')
+    to = request.GET.getlist('to')
 
-    course=request.POST['crs']
-    subid=request.POST['subject']
-    frm=request.POST['from']
-    to=request.POST['to']
-    dt=request.POST['date']
-    obj=examschedule()
-    obj.course=course
-    obj.subject=subid
-    obj.frm=frm
-    obj.to=to
-    obj.dt=dt
-    return HttpResponse(obj)
+
+    var=""
+
+    for i in range(0,len(sub)) :
+        exam = examschedule(request)
+        cor = course.objects.all().get(coursename=cour[i])
+        sb = subject.objects.all().get(subjectname=sub[i])
+        exam.course_id = cor.courseid
+        exam.subject_id = sb.subjectid
+        exam.examdate = dt[i]
+        exam.timefrom = frm[i]
+        exam.timeto = to[i]
+        exam.save()
+
+        var+=" "+cour[i] +"  "+sub[i]+"  "+dt[i]+"<br> "
+
+    return HttpResponse(var)
+    '''
+    for (c,s,d,f,t) in zip(cour,sub,dt,frm,to) :
+        obj=examschedule()
+        cor=course.objects.all().get(coursename=c)
+        sb=subject.objects.all().get(subjectname=s)
+        obj.course_id= cor.courseid
+        obj.subject_id=sb.subjectid
+        obj.examdate=d
+        obj.timefrom=f
+        obj.timeto=t
+        obj.save()'''
+
+
+
+
+
+
+

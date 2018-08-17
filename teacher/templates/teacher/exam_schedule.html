@@ -31,15 +31,16 @@
       <div class="col-sm-4">
         <label>Select Course : </label><select name="course" id="course">
 
-
-
       </select>
       </div>
+
       <div class="col-sm-4">
           <input type="submit" name="getsubject" id="getsubject" value="find Subjects">
       </div>
       </div>
-
+    </form>
+  <form action="{% url 'teacher:schedule' %}" method="get">
+        {% csrf_token %}
 
       <table class="table  table-striped" style="margin-top:30px">
           <tr>
@@ -80,13 +81,11 @@
 
 
  </table>
-
+ <input type="submit" value="Schedule">
 </form>
 
-    <form action="{% url 'teacher:schedule' %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Schedule">
-    </form>
+
+
 
 
     </div>
