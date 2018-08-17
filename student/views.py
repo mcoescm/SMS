@@ -114,15 +114,3 @@ def update(request):
 
 
 
-def getData(request):
-
-    btn = request.POST['aaa']
-    name=request.POST['name']
-    parent="hello"
-    if btn == "Get1":
-        context = {'data': name,'par': parent}
-        return render(request, 'student/test.html', context)
-    elif btn == "Get2":
-        data = ["ankush Gochke"]
-        context = {'data': data}
-        return render(request, 'student/test.html', context)
