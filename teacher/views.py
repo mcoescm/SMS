@@ -7,6 +7,12 @@ from teacher.models import teacher,examschedule
 
 
 # Create your views here.
+def loadmain(request):
+    nm = request.session['user']
+    dict = {"Name" : nm}
+    return render(request, "teacher/Login Teacher.html",dict)
+
+
 def index(request):
     deptobj=department.objects.all()
     courseobj=course.objects.all()
@@ -140,6 +146,10 @@ def schedule(request):
     dt = request.GET.getlist('date')
     frm = request.GET.getlist('from')
     to = request.GET.getlist('to')
+
+
+    var=""
+
     for i in range(0,len(sub)) :
         exam = examschedule()
         cor = course.objects.all().get(coursename=cour[i])
@@ -150,7 +160,10 @@ def schedule(request):
         exam.timefrom = frm[i]
         exam.timeto = to[i]
         exam.save()
-    return HttpResponse("Exam is Schedule")
 
+        var+=" "+cour[i] +"  "+sub[i]+"  "+dt[i]+"<br> "
+
+    return HttpResponse(var)
+    
 
 

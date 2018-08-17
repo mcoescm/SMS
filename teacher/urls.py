@@ -4,7 +4,8 @@ from . import views
 
 app_name="teacher"
 urlpatterns = [
-    path('',views.index , name='index'),
+    path('', views.loadmain , name='loadmain'),
+    path('registerTeacher',views.index , name='index'),
     path('register/', views.register , name='register'),
     path('examschedule/', views.exams , name='exams'),
     path('findsubject/', views.findsubject , name='findsubject'),

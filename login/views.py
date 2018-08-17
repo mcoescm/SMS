@@ -16,7 +16,7 @@ def checklogin(request):
     if cuser=='teacher':
         obj = teacher.objects.get(email = unm)
         if obj.isadmin == "YES":
-               return HttpResponseRedirect("/attendance/")
+               return HttpResponseRedirect("/teacher/")
         else:
             return render(request, "attendance/attendance.html")
 
