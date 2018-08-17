@@ -9,5 +9,6 @@ urlpatterns = [
 
     path('update1/', views.studupdate, name="updatestud"),
     path('update/', views.update, name='update_student'),
+
     ]
 
