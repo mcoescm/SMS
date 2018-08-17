@@ -5,6 +5,7 @@ from subject.models import subject
 from subject.models import subject
 from teacher.models import teacher
 
+
 # Create your views here.
 def index(request):
     deptobj=department.objects.all()
@@ -74,3 +75,29 @@ def examschedule(request):
     dict={"department":deptobj, "course":courseobj}
 
     return render(request, "teacher/exam_schedule.html", dict)
+
+
+def findsubject(request):
+    cid=request.POST['course']
+    obj=course.objects.get(coursename=cid)
+    subjectobj=subject.objects.all().filter(courseid=obj.courseid)
+
+    dict={"subjectname":subjectobj, "coursedata":obj.coursename}
+    return render(request,"teacher/exam_schedule.html", dict)
+
+
+
+def schedule(request):
+
+    course=request.POST['crs']
+    subid=request.POST['subject']
+    frm=request.POST['from']
+    to=request.POST['to']
+    dt=request.POST['date']
+    obj=examschedule()
+    obj.course=course
+    obj.subject=subid
+    obj.frm=frm
+    obj.to=to
+    obj.dt=dt
+    return HttpResponse(obj)

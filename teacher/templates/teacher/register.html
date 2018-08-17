@@ -43,10 +43,43 @@
 			<form action="{% url 'teacher:register' %}" method="post"><br>
                 {% csrf_token %}
 				<label>Admin : </label>    <select name='role'> <optgroup label="Select role of teacher"></optgroup><option value="no" id="no">NO</option><option name="yes" id="yes">YES</option></select>
-				&nbsp;&nbsp;&nbsp;&nbsp;<label>Department: </label>    <select name='dept'>{% for i in dept %} <option value="{{ i.deptname }}" id="{{ i.deptname }}">{{ i.deptname }}</option>{% endfor %}</select>
+				&nbsp;&nbsp;&nbsp;</select>
 				<br><label>Course : </label>    <select name='course'> <optgroup label="Select Course"></optgroup>{% for i in course %}<option value="{{ i.coursename }}" id="{{ i.coursename }}">{{ i.coursename }}</option>{% endfor %}</select>
                 &nbsp;&nbsp;&nbsp;&nbsp;<label>Subject : </label>    <select name='subject'> <optgroup label="Select role of teacher"></optgroup>{% for i in subject %}<option value="{{ i.subjectname }}" id="{{ i.subjectid }}">{{ i.subjectname }}</option>{% endfor %}</select>
-				        <div class="row">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">&nbsp;
+                            <label>isAdmin :</label>&nbsp;
+                            <label><input type="radio" name="role" value="YES"> &nbsp;&nbsp;Yes </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="role" value="NO"> &nbsp;&nbsp;No </label>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+					<div class="col-sm-4">
+                        <div class="form-group">
+                                <label>Select Department: </label>
+                            <select name='dept' id="dept" onchange="getcourse()" class="form-control">{% for i in dept %} <option value="{{ i.deptname }}">{{ i.deptname }}</option>{% endfor %}</select>
+
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Select Course :</label>
+                            <select name="course" id="course" class="form-control"></select>
+                         </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Select Subject :</label>
+                            <select name="subject" id="subject" class="form-control"></select>
+                         </div>
+                    </div>
+				</div>
+
+                <div class="row">
 					<div class="col-sm-12"><label>Full Name :</label></div>
 				</div>
 				<div class="row">
@@ -244,13 +277,42 @@
 
 	}
 
+ function getcourse() {
 
-	function setselectdata(id){
+    var val=document.getElementById("dept").value;
+    select=document.getElementById("course");
+        select.options.length = 0;
+        {% for x in course %}
 
+            if(val=='{{ x.dept_id}}')
+            {
+                var option = document.createElement("option");
+                option.text = "{{ x.coursename }}";
+                option.value="{{ x.coursename }}";
+                select.add(option,0);
+            }
 
-
+        {% endfor %}
     }
 
+    function getSubject() {
+
+        var val=document.getElementById("course").value;
+        select=document.getElementById("subject");
+        select.options.length = 0;
+        {% for x in subject %}
+
+            if(val=='{{ x.courseid}}')
+            {
+                var option = document.createElement("option");
+                option.text = "{{ x.subjectname }}";
+                option.value="{{ x.subjectname }}";
+                select.add(option,0);
+            }
+
+        {% endfor %}
+
+    }
 
 
 </script>

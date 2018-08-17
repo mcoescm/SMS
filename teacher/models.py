@@ -23,5 +23,3 @@ class teacher(models.Model):
     dept=models.ForeignKey(department, on_delete=models.CASCADE)
     course_id=models.ForeignKey(course, on_delete=models.CASCADE)
     subject=models.ForeignKey(subject, on_delete=models.CASCADE)
-
-
