@@ -26,16 +26,17 @@
         {% csrf_token %}
       <div class="row">
         <div class="col-sm-4">
-        <label>Select Dept : </label><select name="dept" onchange="getcourse()" id="dept">{% for i in department %}<option value="{{ i.deptname }}" name="{{ i.deptname }}">{{ i.deptname }}</option>{% endfor %}</select>
-      </div>
+        <label>Select Dept : </label><select name="dept" class="form-control" onchange="getcourse()" id="dept">{% for i in department %}<option value="{{ i.deptname }}" name="{{ i.deptname }}">{{ i.deptname }}</option>{% endfor %}</select>
+        </div>
       <div class="col-sm-4">
-        <label>Select Course : </label><select name="course" id="course">
+        <label>Select Course : </label><select name="course" id="course" class="form-control">
 
       </select>
       </div>
 
       <div class="col-sm-4">
-          <input type="submit" name="getsubject" id="getsubject" value="find Subjects">
+
+          <input type="submit" name="getsubject" id="getsubject" class="btn btn-dark" style="margin-top: 10%; width: 40%;" value="Find Subjects">
       </div>
       </div>
     </form>
@@ -55,33 +56,34 @@
           {% for i in subjectname %}
           <tr>
                 <td>
-                    <input type="text" readonly="" required="" id="course" name="crs" value="{{ coursedata }}">
+                    <input type="text" readonly="" class="form-control" required="" id="course" name="crs" value="{{ coursedata }}">
                 </td>
 
 
                 <td>
-                    <input type="text" readonly="" required="" id="subject" name="subject" value="{{ i.subjectname }}">
+                    <input type="text" readonly="" class="form-control" required="" id="subject" name="subject" value="{{ i.subjectname }}">
                 </td>
 
 
                 <td>
-                    <input type="date" name="date"  required="">
+                    <input type="date" name="date" class="form-control" required="">
                 </td>
 
                 <td>
-                <input type="time" name="from"  required="">
+                <input type="time" name="from" class="form-control" required="">
 
                 </td>
 
                 <td>
-                  <input type="time" name="to" id="to">
+                  <input type="time" name="to" class="form-control" id="to">
                 </td>
           </tr>
             {% endfor %}
 
 
  </table>
- <input type="submit" value="Schedule">
+  <br><br>
+ <input type="submit" value="Schedule" class="btn btn-dark" style="width: 20%; margin-right: 5%; float: right;">
 </form>
 
 

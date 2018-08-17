@@ -140,10 +140,6 @@ def schedule(request):
     dt = request.GET.getlist('date')
     frm = request.GET.getlist('from')
     to = request.GET.getlist('to')
-
-
-    var=""
-
     for i in range(0,len(sub)) :
         exam = examschedule()
         cor = course.objects.all().get(coursename=cour[i])
@@ -154,20 +150,7 @@ def schedule(request):
         exam.timefrom = frm[i]
         exam.timeto = to[i]
         exam.save()
+    return HttpResponse("Exam is Schedule")
 
-        var+=" "+cour[i] +"  "+sub[i]+"  "+dt[i]+"<br> "
-
-    return HttpResponse(var)
-    '''
-    for (c,s,d,f,t) in zip(cour,sub,dt,frm,to) :
-        obj=examschedule()
-        cor=course.objects.all().get(coursename=c)
-        sb=subject.objects.all().get(subjectname=s)
-        obj.course_id= cor.courseid
-        obj.subject_id=sb.subjectid
-        obj.examdate=d
-        obj.timefrom=f
-        obj.timeto=t
-        obj.save()'''
 
 
