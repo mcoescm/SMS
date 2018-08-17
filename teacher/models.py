@@ -24,9 +24,11 @@ class teacher(models.Model):
     course_id=models.ForeignKey(course, on_delete=models.CASCADE)
     subject=models.ForeignKey(subject, on_delete=models.CASCADE)
 
+
 class examschedule(models.Model):
     course=models.ForeignKey(course, null=True, on_delete=models.SET_NULL)
     subject=models.ForeignKey(subject,null=True,on_delete=models.SET_NULL)
     examdate=models.DateField()
     timefrom=models.TimeField()
     timeto=models.TimeField()
+

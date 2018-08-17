@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from course.models import course, department
 from subject.models import subject
 from subject.models import subject
-from teacher.models import teacher
+from teacher.models import teacher,examschedule
+
 
 # Create your views here.
 def index(request):
@@ -116,7 +117,7 @@ def updation(request):
         return HttpResponse("<h3>" + fnm + " Your updation is successfully done....</h3>")
 
 
-def examschedule(request):
+def exams(request):
     deptobj=department.objects.all()
     courseobj=course.objects.all()
     dict={"department":deptobj, "course":courseobj}
@@ -144,7 +145,7 @@ def schedule(request):
     var=""
 
     for i in range(0,len(sub)) :
-        exam = examschedule(request)
+        exam = examschedule()
         cor = course.objects.all().get(coursename=cour[i])
         sb = subject.objects.all().get(subjectname=sub[i])
         exam.course_id = cor.courseid
