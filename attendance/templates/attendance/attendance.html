@@ -1,0 +1,93 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <style type="text/css">
+
+        .hide
+        {
+            visibility: hidden;
+        }
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCM</title>
+    <link rel="stylesheet" href="{% static 'course/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{% static 'course/css/simple-line-icons.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css"/>
+    <link rel="stylesheet" href="{% static 'course/css/Login-Form-Clean.css' %}"/>
+    <link rel="stylesheet" href="{% static 'course/css/styles.css' %} "/>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <form action="{% url 'attendance:findstudents' %}" method="post">
+                {% csrf_token %}
+            <div class="row" style="margin-top:64px;">
+                <div class="col-4" id="col1">
+                    <div style="margin-top:18px;"><label><b> Department :</b></label></div><select class="form-control" name="dept" style="margin-top:8px;"><optgroup label="Department"></optgroup> <option value="{{ data.dept_id }}"> {{ data.dept_id }} </option> </select></div>
+                <div class="col-4" id="col2">
+                    <div style="margin-top:18px;"><label><b>Course :</b></label></div><select class="form-control" style="margin-top:8px;" name="crs"><optgroup label="Course"></optgroup> <option value="{{ data.course_id_id }}">{{ data.course_id_id }}</option></select></div>
+                <div class="col-4" id="col3">
+
+                      <input class="btn btn-success" type = "submit" onclick="call()" value="Find Students" style="margin-top:55px;">
+
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <form id = "form" style="visibility: hidden">
+    <br><br>
+        <div style="margin-top:30px; margin-left: 40%" class="form-group"><label class="text-center"> <b> Date : </b></label><input class="form-control" type="date" style="width: 30%"></div>
+    <div class="container">
+        <div style="margin-top:54px;">
+            <div class="table-responsive" id="table1">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Course Name</th>
+                            <th>Present</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in students %}
+                        <tr>
+                            <td>{{ i.fnm }} {{ i.mnm }} {{ i.lnm }}</td>
+                            <td>{{ cnm.coursename }}</td>
+                            <td class="align-items-center"><input type="checkbox" id = "{{ i.id }}" name="{{ i.id }}"></td>
+                        </tr>
+                       {%  endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    </form>
+    </div>
+     <script src="{% static 'course/js/jquery.min.js'%}"></script>
+    <script src="{% static 'course/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'course/js/bs-animation.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+<script type="application/javascript">
+    function call() {
+        document.getElementById("form").style.visibility = "visible";
+
+    }
+</script>
+
+</body>
+
+</html>

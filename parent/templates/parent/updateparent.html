@@ -198,7 +198,7 @@
 		if(isNaN(ab))
 		{
 
-			a.setCustomValidity("I expect a Mobile No, darling!");
+			a.setCustomValidity("Phone number expected");
 		}
 
 
@@ -207,6 +207,7 @@
 
 	function age()
 	{
+
 		var udate=document.getElementById("dt").value.substr(0,4);
 		var cdate=new Date().getFullYear();
 		document.getElementById("ages").value = cdate-udate;
