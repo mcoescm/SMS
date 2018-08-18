@@ -16,9 +16,12 @@ def checklogin(request):
     if cuser=='teacher':
         obj = teacher.objects.get(email = unm)
         if obj.isadmin == "YES":
-               return HttpResponseRedirect("/teacher/")
+                request.session['user'] = unm
+                request.session['adm'] = "Admin"
+                return HttpResponseRedirect("/teacher/loginadmin/")
         else:
-            return render(request, "attendance/attendance.html")
+            request.session['user'] = unm
+            return HttpResponseRedirect("/teacher/")
 
     elif cuser == 'student':
         return HttpResponse("Student !")

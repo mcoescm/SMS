@@ -115,6 +115,7 @@
 
 #column2 {
   border-top:solid 1px;
+  border-right:solid 1px;
   border-bottom:solid 1px;
 }
 
@@ -128,6 +129,15 @@
 }
 
 #column2:hover {
+  background-color:rgb(241,241,241);
+}
+
+#Column3 {
+  border-top:solid 1px;
+  border-bottom:solid 1px;
+}
+
+#Column3:hover {
   background-color:rgb(241,241,241);
 }
 

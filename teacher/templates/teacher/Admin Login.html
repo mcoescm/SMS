@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCM</title>
+     <link rel="stylesheet" href="{% static 'teacher/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="{% static 'teacher/css/Login-Form-Clean.css' %}"/>
+     <link rel="stylesheet" href="{% static 'teacher/css/Navigation-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'teacher/css/Simple-Vertical-Navigation-Menu-v-10.css' %}"/>
+    <link rel="stylesheet" href="{% static 'teacher/css/sticky-dark-top-nav-with-dropdown.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">School Management System</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Register</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'teacher:index' %}">Register Teacher</a><a class="dropdown-item" role="presentation" href="{% url 'student:student_register' %}">Register Student</a><a class="dropdown-item" role="presentation" href="{% url 'parent:index' %}">Register Parent </a> <a class="dropdown-item" role="presentation" href="{% url 'course:index' %}">Register Course </a> <a class="dropdown-item" role="presentation" href="{% url 'subject:index' %}">Register Subject</a> </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Update</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="jumbotron" data-aos="fade" data-aos-duration="650" data-aos-delay="250" style="background-color:#f7f7f7;">
+                <h1 class="text-center">{{ Admin }}</h1>
+                <p class="text-center">WELCOME TO SCHOOL MANAGEMENT SYSTEM</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div onclick="call()" class="col-6" data-aos="fade" data-aos-duration="700" data-aos-delay="300" id="col1">
+                    <div style="margin-left:20px;margin-top:76px;"><img src="{% static 'teacher/imgs/attend.png' %}"></div>
+                    <div id="Attend" style="margin-top:30px;margin-bottom:105px;"><label style="font-family:Roboto, sans-serif;font-size:22px;">Attendance</label></div>
+                </div>
+                <div  onclick="call2()" class="col-6" data-aos="fade" data-aos-duration="700" data-aos-delay="300" id="column2">
+                    <div style="margin-left:192px;margin-top:69px;"><img src="{% static 'teacher/imgs/es.png' %}"></div>
+                    <div id="Sch" style="margin-top:30px;"><label style="font-family:Roboto, sans-serif;font-size:22px;margin-left:149px;">Exam Schedule</label></div>
+                </div>
+                <div class="col">
+                    <div style="margin-top:20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'attendance:index' %}" id = "attendance" hidden></a>
+        <a href="{% url 'teacher:exams' %}" id = "es" hidden></a>
+    <script src="{% static 'course/js/jquery.min.js'%}"></script>
+    <script src="{% static 'course/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'course/js/bs-animation.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+  <script type="application/javascript">
+        function call(){
+        document.getElementById("attendance").click();}
+
+        function call2(){
+        document.getElementById("es").click();}
+    </script>
+</body>
+
+</html>

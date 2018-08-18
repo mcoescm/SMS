@@ -12,6 +12,12 @@ def loadmain(request):
     dict = {"Name" : nm}
     return render(request, "teacher/Login Teacher.html",dict)
 
+def admin(request):
+    nm = request.session['user']
+    adm = request.session['adm']
+    dict = {"Name" : nm, "Admin" : adm}
+    return render(request, "teacher/Admin Login.html",dict)
+
 
 def index(request):
     deptobj=department.objects.all()
